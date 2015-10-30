@@ -53,7 +53,7 @@ export default combineReducers({
 We use `ReduxTheme` to configure the theme state with default props.
 
 **note:** we use webpack `require.context` to inject styles and themes from your
-app structure.
+app structure. Feel free to change the regex and default naming conventions.
 
 ```js
 import { ReduxTheme } from 'redux-theme';
@@ -124,12 +124,13 @@ Colors and utilities is also provided.
 
 ```js
 // /themes/custom-theme.js
-import { defaultTheme, Colors, ColorManipulator } from 'redux-theme';
+import { Theme, Colors, ColorManipulator } from 'redux-theme';
 
-// Change some theme properties
-defaultTheme.typo.font = 'Luckiest Guy, sans-serif';
-defaultTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
-export default defaultTheme;
+const customTheme = new Theme ();
+// Change some default theme properties
+customTheme.typo.font = 'Luckiest Guy, sans-serif';
+customTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
+export default customTheme;
 ```
 
 ### Styles
