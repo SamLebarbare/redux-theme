@@ -128,7 +128,7 @@ import { defaultTheme, Colors, ColorManipulator } from 'redux-theme';
 
 // Change some theme properties
 defaultTheme.typo.font = 'Luckiest Guy, sans-serif';
-defaultTheme.palette.subTextColor:  ColorManipulator.fade(Colors.white, 0.54);
+defaultTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
 export default defaultTheme;
 ```
 
