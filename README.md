@@ -116,8 +116,25 @@ export default class Button extends Component {
 }
 ```
 
-### Styles and themes
+### Theme
 
+By convention, theme file must be named: `name-theme.js`
+You can use, override and export the default `redux-theme`:
+Colors and utilities is also provided.
+
+```js
+// /themes/custom-theme.js
+import { defaultTheme, Colors, ColorManipulator } from 'redux-theme';
+
+// Change some theme properties
+defaultTheme.typo.font = 'Luckiest Guy, sans-serif';
+defaultTheme.palette.subTextColor:  ColorManipulator.fade(Colors.white, 0.54);
+export default defaultTheme;
+```
+
+### Styles
+
+By convention, style file must be named: `MyComponent.styles.js`
 Style file is using `radium` convention for applying a `kind`.
 A style file is a function receiving the current theme as argument.
 
@@ -164,40 +181,6 @@ export default (theme) => {
       fontStyle: 'italic',
     }
   }
-};
-```
-
-Theme file must export a convential shape:
-**note:** Theme pack will be released soon
-
-```js
-export default {
-  spacing: Spacing,
-  typo: {
-    font: 'Roboto, sans-serif',
-    small: '12px',
-    normal: '16px',
-    big: '24px'
-  },
-  shapes: {
-    defaultBorderRadius: '2px'
-  },
-  palette: {
-      primary1Color: Colors.lightBlue500,
-      primary2Color: Colors.lightBlue700,
-      primary3Color: Colors.lightBlue100,
-      accent1Color:  Colors.pinkA200,
-      accent2Color:  Colors.pinkA400,
-      accent3Color:  Colors.pinkA100,
-      textColor:     Colors.darkBlack,
-      subTextColor:  ColorManipulator.fade(Colors.darkBlack, 0.54),
-      canvasColor:   Colors.white,
-      paperColor:    Colors.white,
-      borderColor:   Colors.grey300,
-      disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
-  },
-  colors: Colors,
-  transitions: Transitions
 };
 ```
 
