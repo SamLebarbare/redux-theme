@@ -1,0 +1,38 @@
+{
+  "name": "redux-theme",
+  "version": "0.0.1",
+  "description": "Theme and Styles provider for Redux",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamLebarbare/redux-theme.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "theme",
+    "styles"
+  ],
+  "author": "Sam Le Barbare <sam@loup.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SamLebarbare/redux-theme/issues"
+  },
+  "homepage": "https://github.com/SamLebarbare/redux-theme#readme",
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "rimraf": "^2.4.3"
+  },
+  "dependencies": {
+    "immutable": "^3.7.5",
+    "radium": "^0.14.3",
+    "react": "^0.14.1",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4"
+  }
+}
