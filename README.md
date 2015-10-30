@@ -1,6 +1,7 @@
 # redux-theme
 
 _Decorate your components using themes_
+
 **note:** early preview !
 
 ## Installation
@@ -11,30 +12,21 @@ npm install --save redux-theme
 
 ## Usage
 
-### App structure
-Using `redux-theme` add generally two new folders to your app structure:
+### Modify app structure
 
-```
-├── styles               # Redux-theme styles definitions for components
-├── themes               # Redux-theme definitions
-```
+Using `redux-theme` add generally two new folders to your app structure:
 
 ```
 └── src                      # Application source code
     ├── components           # Generic React Components (generally Dumb components)
-    ├── containers           # Components that provide context (e.g. Redux Providers)
-    ├── layouts              # Components that dictate major page structure
-    ├── reducers             # Redux reducers
-    ├── routes               # Application route definitions
-    ├── stores               # Redux store configuration  
     ├── styles               # Redux-theme styles definitions for components
     ├── themes               # Redux-theme definitions
-    ├── utils                # Generic utilities
-    ├── views                # Components that live at a route
-    └── index.js             # Application bootstrap and rendering
+    ├── reducers             # Redux reducers
+    etc...
 ```
 
-### Store configuration
+### Configure your store
+
 Like other reducers, `theme:` is required in app state shape.
 
 ```js
