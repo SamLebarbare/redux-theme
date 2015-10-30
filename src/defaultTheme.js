@@ -1,6 +1,6 @@
 import { Colors, ColorManipulator, Transitions } from './utils';
 
-export default class theme {
+export default class Theme {
   constructor () {
     this.spacing = {
       iconSize: 24,
