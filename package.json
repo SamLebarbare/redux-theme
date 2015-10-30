@@ -1,9 +1,10 @@
 {
   "name": "redux-theme",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Theme and Styles provider for Redux",
   "main": "lib/index.js",
   "scripts": {
+    "prepublish": "babel src --out-dir lib",
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
     "test": "echo \"Error: no test specified\" && exit 1"
