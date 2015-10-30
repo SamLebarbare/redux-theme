@@ -2,7 +2,7 @@
 
 _Decorate your components using themes_
 
-**note:** early preview !
+**note:** early preview ! server side rendering currently not supported
 
 ## Installation
 
