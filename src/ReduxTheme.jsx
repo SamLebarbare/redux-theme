@@ -1,25 +1,26 @@
 'use strict';
 import React, {Component, PropTypes}  from 'react';
 import { connect }   from 'react-redux';
-import { configure } from './themeReducer';
+import { load, applyTheme } from './themeReducer';
 
 @connect (
   state => ({
     font: state.theme.get ('font'),
     canvasColor: state.theme.get ('canvasColor')
   }),
-  dispatch => ({configure, dispatch}))
+  dispatch => ({load, applyTheme, dispatch}))
 export default class ReduxTheme extends Component {
 
   static propTypes = {
-    stylesContext: PropTypes.func.isRequired,
-    themesContext: PropTypes.func.isRequired,
+    stylesDir: PropTypes.string.isRequired,
+    themesDir: PropTypes.string.isRequired,
     defaultTheme: PropTypes.string.isRequired,
   }
 
   componentWillMount() {
-    const {dispatch, stylesContext, themesContext, defaultTheme} = this.props;
-    dispatch (configure (themesContext, stylesContext, defaultTheme));
+    const {dispatch, stylesDir, themesDir, defaultTheme, applyTheme} = this.props;
+    dispatch (load (defaultTheme, themesDir, stylesDir));
+    dispatch (applyTheme (defaultTheme));
   }
 
   render() {

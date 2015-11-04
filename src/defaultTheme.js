@@ -1,7 +1,9 @@
 import { Colors, ColorManipulator, Transitions } from './utils';
+import {registerTheme, registerStyle, applyTheme} from './themeReducer';
 
 export default class Theme {
-  constructor () {
+  constructor (themeName) {
+    this.name = themeName;
     this.spacing = {
       iconSize: 24,
       desktopKeylineIncrement: 64
@@ -45,6 +47,10 @@ export default class Theme {
     this.colors = Colors;
 
     this.transitions = Transitions;
+  }
+
+  register (dispatch) {
+    dispatch (registerTheme (this.name, this));
   }
 
 };
