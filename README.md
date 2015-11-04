@@ -1,4 +1,4 @@
-# redux-theme
+# redux-theme v0.2.0
 
 _Decorate your components using themes_
 
@@ -40,40 +40,6 @@ export default combineReducers({
 });
 ```
 
-### In you root container
-
-We use `ReduxTheme` to configure the theme state with default props.
-
-**note:** we use webpack `require.context` to inject styles and themes from your
-app structure. Feel free to change the regex and default naming conventions.
-
-```js
-import { ReduxTheme } from 'redux-theme';
-
-/// STYLES AND THEMES FOLDERS
-const stylesContext = require.context ('../styles/', true, /^((?![\\/]node_modules[\\/]).)*\\.styles\.js/);
-const themesContext = require.context ('../themes/', true, /^((?![\\/]node_modules[\\/]).)*\-theme\.js/);
-
-export default class Root extends Component {
-  render() {
-    const {store} = this.props;
-    return (
-      <div>
-        <ReduxTheme
-          store={store}
-          themesContext={themesContext}
-          stylesContext={stylesContext}
-          defaultTheme={'default-theme'} />
-        <Provider store={store}>
-          <ReduxRouter>
-            {routes}
-          </ReduxRouter>
-        </Provider>
-      </div>
-    );
-}
-```
-
 ### Decorate your components
 
 Connect you components using `@connectTheme` decorator.
@@ -110,26 +76,26 @@ export default class Button extends Component {
 
 ### Theme
 
-By convention, theme file must be named: `name-theme.js`
 You can use, override and export the default `redux-theme`:
 Colors and utilities is also provided.
 
+## new Theme (<theme name>)
 ```js
 // /themes/custom-theme.js
 import { Theme, Colors, ColorManipulator } from 'redux-theme';
 
-const customTheme = new Theme ();
+const customTheme = new Theme ('custom');
 // Change some default theme properties
 customTheme.typo.font = 'Luckiest Guy, sans-serif';
 customTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
 export default customTheme;
 ```
 
+You can register a theme
 ### Styles
 
-By convention, style file must be named: `MyComponent.styles.js`
-Style file is using `radium` convention for applying a `kind`.
 A style file is a function receiving the current theme as argument.
+Style file is using `radium` convention for applying a `kind`.
 
 ```js
 export default (theme) => {
@@ -176,8 +142,36 @@ export default (theme) => {
   }
 };
 ```
+## Actions on theme reducer
 
-### Theme switching
+## Registering themes and styles
+
+You must register your themes and styles before applying a theme.
+Exemple in webpack:
+
+```js
+import { registerTheme,  registerStyle}  from 'redux-theme'
+
+```
+
+### registerTheme (<theme name>, <theme object>)
+
+```js
+const defaultTheme = new Theme ();
+
+// register
+dispatch (registerTheme ('default-theme', defaultTheme));
+```
+
+### registerStyle (<component name>, <style function>)
+
+```js
+dispatch (registerStyle ('MyComponent', myComponentStyle));
+```
+
+## Applying themes
+
+### applyTheme (<theme name>)
 
 You can apply a new theme by dispatching the new theme name:
 ```js

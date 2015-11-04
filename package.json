@@ -1,13 +1,14 @@
 {
   "name": "redux-theme",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Theme and Styles provider for Redux",
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "babel src --out-dir lib",
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel/register --require ./test/test_helper.js --recursive",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
   "homepage": "https://github.com/SamLebarbare/redux-theme#readme",
   "devDependencies": {
     "babel": "^5.8.29",
+    "chai": "^3.4.0",
+    "chai-immutable": "^1.5.1",
+    "mocha": "^2.3.3",
     "rimraf": "^2.4.3"
   },
   "dependencies": {
