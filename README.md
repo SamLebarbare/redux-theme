@@ -232,8 +232,8 @@ Logic order is:
 - register your styles
 - you can apply one of your registred themes
 
-### registerTheme (<theme object>)
+`registerTheme (<theme object>)`
 
-### registerStyle (<component name>, <style function>)
+`registerStyle (<component name>, <style function>)`
 
-### applyTheme (<theme name>)
+`applyTheme (<theme name>)`
