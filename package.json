@@ -1,6 +1,6 @@
 {
   "name": "redux-theme",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Theme and Styles provider for Redux",
   "main": "lib/index.js",
   "scripts": {

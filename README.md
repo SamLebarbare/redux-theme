@@ -1,4 +1,4 @@
-# redux-theme v0.3.2
+# redux-theme v0.3.3
 
 **note: early preview ! wait for 1.0.0 before using**
 
@@ -84,7 +84,7 @@ const textStyle = (theme) => ({
 // Build array of themes and styles
 const themes = [defaultTheme, myTheme];
 const styles = [{
-  componentName: 'Text',
+  componentName: 'Text', // Will apply on decorated component with this name
   style: textStyle
 }];
 
@@ -115,7 +115,7 @@ Connect you components using `@connectTheme` decorator.
 Your component will receive a `styles` props. with `radium` styles.
 
 **note:** The component class name is used for resolution of styles,
-in this case, it will look for a Button.styles.js in your `stylesContext` folder.
+in this case, it will look for a Button in theme.styles of your state.
 
 ```js
 import React, {Component, PropTypes}  from 'react';
