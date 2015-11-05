@@ -1,8 +1,17 @@
 # redux-theme v0.3.0
 
+**note: early preview ! wait for 1.0.0 before using**
+
 _Decorate your components using themes_
 
-**note: early preview ! wait for 1.0.0 before using**
+This package try to provide best practices for managing inline-styles.
+
+- radium for inline-style
+- material-ui inspired theme template
+- react-redux connect decorator for injecting themed styles
+
+In term of UX:
+
 
 ## Installation
 
@@ -216,38 +225,15 @@ export default (theme) => {
 ```
 ## Reducer actions
 
-## Registering themes and styles
+You can bootstrap your theme by dipatching action yourself.
+Logic order is:
 
-You must register your themes and styles before applying a theme.
-Exemple in webpack:
-
-```js
-import { registerTheme,  registerStyle}  from 'redux-theme'
-
-```
+- register your themes
+- register your styles
+- you can apply one of your registred themes
 
 ### registerTheme (<theme object>)
 
-```js
-const defaultTheme = new Theme ();
-
-// register
-dispatch (registerTheme defaultTheme));
-```
-
 ### registerStyle (<component name>, <style function>)
 
-```js
-dispatch (registerStyle ('MyComponent', myComponentStyle));
-```
-
 ### applyTheme (<theme name>)
-
-You can apply a new theme by dispatching the new theme name:
-```js
-import { applyTheme }  from 'redux-theme'
-
-...
-
-dispatch (applyTheme ('dark-theme'));
-```
