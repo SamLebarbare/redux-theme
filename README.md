@@ -1,4 +1,4 @@
-# redux-theme v0.3.1
+# redux-theme v0.3.2
 
 **note: early preview ! wait for 1.0.0 before using**
 
