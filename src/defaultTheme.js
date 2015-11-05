@@ -40,6 +40,8 @@ export default class Theme {
       defaultBorderRadius: '2px'
     };
 
+    this.colors = Colors;
+
     this.transitions = Transitions;
   }
 
