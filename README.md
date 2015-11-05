@@ -1,8 +1,8 @@
-# redux-theme v0.2.0
+# redux-theme v0.3.0
 
 _Decorate your components using themes_
 
-**note:** early preview ! server side rendering currently not supported
+**note: early preview ! wait for 1.0.0 before using**
 
 ## Installation
 
@@ -39,7 +39,66 @@ export default combineReducers({
   router: routerStateReducer
 });
 ```
+### Provide theme via ReduxTheme component
 
+The ReduxTheme component responsible of :
+
+On mount:
+
+- Registering your themes
+- Registering your styles
+- Applying the first theme
+
+On theme change:
+
+- Update googlefont from theme
+- Update body.backgroundColor from theme
+
+Exemple:
+
+```js
+import { ReduxTheme } from 'redux-theme';
+
+/// Some themes...
+const baseTheme = new Theme ('base');
+const myTheme = new Theme ('mytheme');
+myTheme.typo.font = 'Luckiest Guy, sans-serif';
+
+const textStyle = (theme) => ({
+  base: {
+    fontFamily: theme.typo.font
+  }
+});
+
+
+// Build array of themes and styles
+const themes = [defaultTheme, myTheme];
+const styles = [{
+  componentName: 'Text',
+  style: textStyle
+}];
+
+export default class Root extends Component {
+  render() {
+    const {store} = this.props;
+    return (
+      <div>
+
+        <ReduxTheme
+          store={store}
+          themes={themes}
+          styles={styles}
+          defaultTheme={'mytheme'} />
+
+        <Provider store={store}>
+          <ReduxRouter>
+            {routes}
+          </ReduxRouter>
+        </Provider>
+      </div>
+    );
+}
+```
 ### Decorate your components
 
 Connect you components using `@connectTheme` decorator.
@@ -74,12 +133,13 @@ export default class Button extends Component {
 }
 ```
 
-### Theme
+### Theme class
 
 You can use, override and export the default `redux-theme`:
 Colors and utilities is also provided.
 
-## new Theme (<theme name>)
+#### new Theme (<theme name>)
+
 ```js
 // /themes/custom-theme.js
 import { Theme, Colors, ColorManipulator } from 'redux-theme';
@@ -91,7 +151,19 @@ customTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
 export default customTheme;
 ```
 
-You can register a theme
+#### Available methods
+
+A theme can register and apply if you provide the dispatch func.
+
+```js
+const customTheme = new Theme ('custom');
+// Change some default theme properties
+// ...
+const {dispatch} = this.props;
+customTheme.register (dispatch);
+customTheme.apply (dispatch);
+```
+
 ### Styles
 
 A style file is a function receiving the current theme as argument.
@@ -142,7 +214,7 @@ export default (theme) => {
   }
 };
 ```
-## Actions on theme reducer
+## Reducer actions
 
 ## Registering themes and styles
 
@@ -154,13 +226,13 @@ import { registerTheme,  registerStyle}  from 'redux-theme'
 
 ```
 
-### registerTheme (<theme name>, <theme object>)
+### registerTheme (<theme object>)
 
 ```js
 const defaultTheme = new Theme ();
 
 // register
-dispatch (registerTheme ('default-theme', defaultTheme));
+dispatch (registerTheme defaultTheme));
 ```
 
 ### registerStyle (<component name>, <style function>)
@@ -168,8 +240,6 @@ dispatch (registerTheme ('default-theme', defaultTheme));
 ```js
 dispatch (registerStyle ('MyComponent', myComponentStyle));
 ```
-
-## Applying themes
 
 ### applyTheme (<theme name>)
 
