@@ -3,11 +3,11 @@ import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 import reducer,
        {registerTheme, registerStyle, applyTheme} from '../src/themeReducer';
-
+import Theme from '../src/defaultTheme';
 import testTheme from './themes_test/test-theme';
 import testStyle from './styles_test/Test.styles.js';
 
-describe('themeReducer', () => {
+describe('ReducerSpec -> actions', () => {
 
   it('initialize', () => {
     const nextState = reducer();
@@ -17,20 +17,18 @@ describe('themeReducer', () => {
     }));
   });
 
-  it('register theme `default-theme`', () => {
+  it('register default theme', () => {
     const initialState = Map(fromJS ({
         currentTheme: 'not configured',
       })
     );
-
-    const nextState = reducer(initialState, registerTheme ('default-theme', testTheme));
+    const theme = new Theme ();
+    const nextState = reducer(initialState, registerTheme (theme));
 
     expect(nextState).to.equal(fromJS ({
       currentTheme: 'not configured',
-      registry: {
-        themes: {
-          'default-theme': testTheme
-        }
+      themesRegistry: {
+        default: Map (theme)
       }
     }));
   });
@@ -44,24 +42,22 @@ describe('themeReducer', () => {
     const nextState = reducer(initialState, registerStyle ('Test', testStyle));
     expect(nextState).to.equal(fromJS ({
       currentTheme: 'not configured',
-      registry: {
-        styles: {
-          Test: testStyle
-        }
+      stylesRegistry: {
+        Test: testStyle
       }
     }));
   });
 
-  it('apply `default-theme`', () => {
+  it('apply `test-theme`', () => {
     const actions = [
-      registerTheme ('default-theme', testTheme),
+      registerTheme (testTheme),
       registerStyle ('Test', testStyle),
-      applyTheme ('default-theme')
+      applyTheme ('test')
     ];
 
 
     const finalState = actions.reduce(reducer, Map())
-    expect(finalState.get ('currentTheme')).to.equal ('default-theme');
+    expect(finalState.get ('currentTheme')).to.equal ('test');
     expect(finalState).to.include.keys ('styles');
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "redux-theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Theme and Styles provider for Redux",
   "main": "lib/index.js",
   "scripts": {
@@ -30,7 +30,9 @@
     "babel": "^5.8.29",
     "chai": "^3.4.0",
     "chai-immutable": "^1.5.1",
+    "jsdom": "^7.0.2",
     "mocha": "^2.3.3",
+    "react": "^0.14.2",
     "rimraf": "^2.4.3"
   },
   "dependencies": {

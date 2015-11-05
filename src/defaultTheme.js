@@ -1,9 +1,9 @@
 import { Colors, ColorManipulator, Transitions } from './utils';
-import {registerTheme, registerStyle, applyTheme} from './themeReducer';
+import {registerTheme, applyTheme} from './themeReducer';
 
 export default class Theme {
   constructor (themeName) {
-    this.name = themeName;
+    this.name = themeName || 'default';
     this.spacing = {
       iconSize: 24,
       desktopKeylineIncrement: 64
@@ -19,10 +19,6 @@ export default class Theme {
     this.spacing = {
       iconSize: 24,
       desktopKeylineIncrement: 64
-    };
-
-    this.shapes = {
-      defaultBorderRadius: '2px'
     };
 
     this.palette = {
@@ -44,13 +40,15 @@ export default class Theme {
       defaultBorderRadius: '2px'
     };
 
-    this.colors = Colors;
-
     this.transitions = Transitions;
   }
 
   register (dispatch) {
-    dispatch (registerTheme (this.name, this));
+    dispatch (registerTheme (this));
+  }
+
+  apply (dispatch) {
+    dispatch (applyTheme (this.name));
   }
 
 };

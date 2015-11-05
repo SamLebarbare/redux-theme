@@ -1,6 +1,6 @@
 import { Theme, Colors, ColorManipulator } from '../../src/';
 
-const customTheme = new Theme ();
+const customTheme = new Theme ('test');
 // Change some default theme properties
 customTheme.typo.font = 'Luckiest Guy, sans-serif';
 customTheme.palette.subTextColor = ColorManipulator.fade(Colors.white, 0.54);
