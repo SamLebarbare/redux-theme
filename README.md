@@ -12,6 +12,7 @@ This package try to provide best practices for managing inline-styles.
 
 In term of UX:
 
+![](https://raw.githubusercontent.com/SamLebarbare/redux-theme/master/img/ux.gif)
 
 ## Installation
 
