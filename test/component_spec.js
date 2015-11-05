@@ -5,11 +5,11 @@ import Theme from '../src/defaultTheme';
 import reducer from '../src/themeReducer';
 import {createStore, combineReducers} from 'redux';
 import React from 'react';
-import {renderIntoDocument} from 'react-addons-test-utils';
+import {renderIntoDocument, findRenderedDOMComponentWithTag} from 'react-addons-test-utils';
 import ReduxTheme from '../src/ReduxTheme';
 import testTheme from './themes_test/test-theme';
 import testStyle from './styles_test/Test.styles.js';
-
+import TestComponent from './components_test/Test';
 
 
 
@@ -29,19 +29,35 @@ describe('component_spec -> <ReduxTheme>', () => {
     }
   });
 
-  
+
   const styles = [{
     componentName: 'Test',
     style: testStyle
   }];
   const store = createStore (reducers);
 
-  const component = renderIntoDocument (
-    <ReduxTheme store={store} themes={[testTheme]} styles={styles} defaultTheme={'test'}/>
+  renderIntoDocument (
+    <ReduxTheme
+      store={store}
+      themes={[testTheme]}
+      styles={styles}
+      defaultTheme={'test'}/>
   );
 
+  const component = renderIntoDocument (
+    <TestComponent store={store} />
+  );
+
+  const node = findRenderedDOMComponentWithTag (component, 'div');
+
   it('set correct google font in header', () => {
-    expect(document.getElementById ('reduxtheme').href).to.equal ('http://fonts.googleapis.com/css?family=Luckiest Guy');
+    expect(document.getElementById ('reduxtheme').href).to
+    .equal ('http://fonts.googleapis.com/css?family=Luckiest Guy');
+  });
+
+  it('Test component has correct style', () => {
+    expect(node.style[0]).to
+    .equal ('font-family');
   });
 
 });

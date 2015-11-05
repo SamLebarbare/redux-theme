@@ -2,7 +2,7 @@ import React, {Component, PropTypes}  from 'react';
 import {connectTheme}                 from '../../src/';
 
 @connectTheme
-export default class Button extends Component {
+export default class Test extends Component {
 
   static propTypes = {
     styles: PropTypes.object.isRequired
