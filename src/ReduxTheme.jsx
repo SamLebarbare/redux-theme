@@ -4,9 +4,18 @@ import { connect }   from 'react-redux';
 import { Theme, registerTheme, registerStyle,  applyTheme } from './themeReducer';
 import { Colors } from './utils/'
 @connect (
-  state => ({
-    theme: state.theme.getIn (['themesRegistry', state.theme.get ('currentTheme')])
-  }),
+  state => {
+    // handle serialized or immutable data
+    if (typeof state.theme.get === 'function') {
+      return {
+        theme: state.theme.getIn (['themesRegistry', state.theme.get ('currentTheme')])
+      };
+    } else {
+      return {
+        theme: state.theme.themesRegistry[state.theme.currentTheme]
+      };
+    }
+  },
   dispatch => ({applyTheme, registerTheme, registerStyle, dispatch}),
   null,
   {pure: true})
